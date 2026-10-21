@@ -1,0 +1,451 @@
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>田中家の保障プラン（モデルケース）</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<style>
+/* layout: 1カラムの読み物。場面カード→プラン表→推移グラフ→切り出し方の順に下へ流す */
+:root{
+  --teal:#0E7C86; --deep:#0A5A62; --ink:#1C3236; --ink2:#4A6468; --soft:#EEF6F7; --line:#D5E4E6;
+  --gold:#A87A1F; --goldfill:#D9A441; --goldbg:#FBF4E3; --bg:#ffffff; --card:#ffffff;
+  --red:#C0473A; --redbg:#FBEDEB; --pub:#7FB7BD; --wife:#B9D8DB; --ins:#D9A441;
+  --font:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E4EEEF; --ink2:#A7BDC0; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B653; --goldfill:#C99632; --goldbg:#2B2412; --bg:#0F1D1F; --card:#132427;
+  --red:#F08C7F; --redbg:#3A1E1B; --pub:#3E8790; --wife:#2D5A5F; --ins:#C99632; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E4EEEF; --ink2:#A7BDC0; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B653; --goldfill:#C99632; --goldbg:#2B2412; --bg:#0F1D1F; --card:#132427;
+  --red:#F08C7F; --redbg:#3A1E1B; --pub:#3E8790; --wife:#2D5A5F; --ins:#C99632; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:18px;font-weight:500;line-height:1.85;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;line-height:1.4;margin:0}
+h1{font-size:clamp(30px,6vw,44px);font-weight:900;color:var(--deep)}
+h2{font-size:clamp(23px,4.2vw,29px);font-weight:900;color:var(--deep)}
+h3{font-size:20px;font-weight:900}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+section{display:grid;gap:18px;padding-block:44px 8px}
+.eyebrow{font-size:14px;letter-spacing:.12em;color:var(--gold);font-weight:700}
+.lead{color:var(--ink2)}
+.hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end;padding-block:36px 0}
+.hero img{width:150px;height:auto}
+.family{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-size:15px;background:var(--soft);color:var(--deep);border-radius:999px;padding:3px 14px;font-weight:700}
+.chip.g{background:var(--goldbg);color:var(--gold)}
+.answer{background:var(--soft);border-radius:18px;padding:22px 22px;display:grid;gap:14px}
+.answer .big{font-size:clamp(21px,4vw,26px);font-weight:900;color:var(--deep);line-height:1.55}
+.answer ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kv div{border:1px solid var(--line);border-radius:14px;padding:12px 16px;background:var(--card)}
+.kv b{display:block;font-size:26px;font-weight:900;color:var(--deep)}
+.kv span{font-size:14.5px;color:var(--ink2)}
+.scen{display:grid;gap:16px}
+.sc{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--card);display:grid;gap:12px;min-width:0}
+.sc .tag{font-size:14px;font-weight:700;color:var(--gold)}
+.sc p{font-size:16.5px;color:var(--ink2)}
+.bars{display:grid;gap:10px}
+.bar{display:grid;gap:4px}
+.bar .lab{font-size:15px;font-weight:700;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.track{position:relative;height:30px;background:var(--soft);border-radius:8px;overflow:visible}
+.seg{position:absolute;top:0;height:100%;font-size:13.5px;color:var(--ink);display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden}
+.seg.pub{background:var(--pub)} .seg.wife{background:var(--wife)} .seg.ins{background:var(--ins);color:#2b1d00}
+.seg.first{border-radius:8px 0 0 8px}
+.need{position:absolute;top:-6px;bottom:-6px;width:3px;background:var(--red);border-radius:2px}
+.gap{font-size:15px;font-weight:700}
+.gap.ng{color:var(--red)} .gap.ok{color:var(--teal)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:14.5px;color:var(--ink2)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:5px}
+.toggle{display:inline-flex;background:var(--soft);border-radius:999px;padding:4px;gap:4px;flex-wrap:wrap}
+.toggle button{font:inherit;font-size:16px;font-weight:700;border:0;border-radius:999px;padding:6px 18px;background:transparent;color:var(--deep);cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--teal);color:var(--bg)}
+.toggle button:focus-visible{outline:3px solid var(--goldfill);outline-offset:2px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:16px;min-width:560px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:14.5px;color:var(--ink2);font-weight:700;background:var(--soft)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.who td{background:var(--goldbg);font-weight:900;color:var(--gold)}
+tr.sum td{font-weight:900;color:var(--deep)}
+.est{font-size:13.5px;color:var(--gold);font-weight:700;white-space:nowrap}
+.note{font-size:15px;color:var(--ink2)}
+.totals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.totals div{border-radius:14px;padding:14px 18px;background:var(--goldbg)}
+.totals b{display:block;font-size:28px;font-weight:900;color:var(--gold)}
+.totals span{font-size:15px;color:var(--ink2)}
+.chart{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:10px 6px 4px;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:520px;height:auto}
+.steps{display:grid;gap:12px;counter-reset:s;margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--bg);font-weight:900;display:grid;place-items:center;font-size:19px}
+.steps b{display:block;font-size:19px;font-weight:900}
+.steps .say{display:block;margin-top:6px;background:var(--soft);border-radius:12px;padding:8px 14px;font-size:16.5px;color:var(--deep)}
+.ask{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.ask div{border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:16px;background:var(--card)}
+.ask b{color:var(--gold);font-size:14px;display:block}
+.withbot{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.withbot img{width:96px;height:auto}
+.unk{display:grid;gap:14px}
+.unk article{border:1px solid var(--line);border-left:6px solid var(--goldfill);border-radius:14px;padding:18px 20px;background:var(--card);display:grid;gap:10px;min-width:0}
+.unk .q{background:var(--soft);border-radius:12px;padding:8px 14px;font-size:16.5px;color:var(--deep)}
+.unk ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:16.5px}
+.unk .k{font-size:14px;font-weight:700;color:var(--gold)}
+.src{font-size:14px;color:var(--ink2);display:grid;gap:6px}
+.src ul{margin:0;padding-left:1.2em}
+@media (max-width:560px){.hero{grid-template-columns:1fr}.hero img{width:110px;justify-self:end;margin-top:-10px}.withbot{grid-template-columns:1fr}.withbot img{width:80px}}
+@media (prefers-reduced-motion:no-preference){.seg{transition:width .5s ease,left .5s ease}}
+</style>
+
+<div class="wrap">
+
+<div style="background:#0E7C86;color:#fff;border-radius:14px;padding:14px 20px;margin:0 0 18px;font-weight:700;line-height:1.7;font-size:17px">金融AIカレッジ｜モデルケース<br><span style="font-weight:500;font-size:15px">架空の田中家。面談の内容をAIに渡して、ここまでの提案の下書きを作った例です。数字の確認と仕上げは募集人が行います。</span></div>
+<header class="hero">
+  <div>
+    <p class="eyebrow">モデルケース（架空の家庭）　面談のあとの提案書</p>
+    <h1>田中家の保障プラン</h1>
+    <div class="family">
+      <span class="chip">夫35歳・会社員・年収600万</span>
+      <span class="chip">妻33歳・パート・年収120万</span>
+      <span class="chip">長男6歳・長女3歳</span>
+      <span class="chip g">ローン残3,500万・月11万・夫単独・一般団信</span>
+      <span class="chip g">既契約：終身500万</span>
+    </div>
+  </div>
+  <img src="img/mascot_invite.webp" alt="そろばんロボ" width="150" height="150">
+</header>
+
+<section aria-labelledby="ans">
+  <h2 id="ans">面談のあと、AIがまとめた見立て（例）</h2>
+  <div class="answer">
+    <p class="big">亡くなるとローンは消えます。<br>働けなくなると、ローンは残ります。</p>
+    <ul>
+      <li><b>①リスク</b>：いちばん重いのは「夫が長く働けない」。団信が効かず、月11万の返済と35万の生活費がそのまま残ります。</li>
+      <li>次が「夫が亡くなる」。団信と遺族年金で日々の暮らしは回りますが、教育費と妻の老後が足りません。</li>
+      <li>見落としやすいのが「妻が働けない」。扶養内のパートは傷病手当金がなく、収入と家事・育児の手が同時に止まります。</li>
+      <li>働けないときの支払期間は5年をすすめます。2年型は傷病手当金の時期と重なり、1年6か月後の谷の途中で終わります。</li>
+      <li><b>②アプローチ</b>：団信の範囲を一緒に確かめるところから入ります。公的保障を先に数字で見せてから、残る「谷」だけを保険で埋めます。</li>
+    </ul>
+    <p class="note">この見立ては、預貯金・お二人の健康状態・ご家族の病歴がまだ分からない段階の仮の形です（下の「まだ聞けていないこと」）。</p>
+  </div>
+</section>
+
+<section aria-labelledby="now">
+  <h2 id="now">いまの家計（概算）</h2>
+  <div class="kv">
+    <div><b class="num">約38.3万</b><span>夫の手取り／月（年収600万→手取り約460万）</span></div>
+    <div><b class="num">約9.6万</b><span>妻の手取り／月（扶養内）</span></div>
+    <div><b class="num">35万</b><span>生活費／月（ローン11万を含む）</span></div>
+    <div><b class="num">約12.9万</b><span>毎月の余力（ボーナス込みの平均）</span></div>
+  </div>
+  <p class="note">手取りは社会保険料・税を引いた概算です。<br>余力のうち、提案の保険料（5年型で月5.2〜5.5万）は約4割です。</p>
+</section>
+
+<section aria-labelledby="unknown">
+  <h2 id="unknown">まだ聞けていないこと</h2>
+  <p class="lead">本来のヒアリングでは、この3つが分からないと提案を決めきれません。<br>答えによって、保障の厚みも商品の組み方も変わります。</p>
+  <div class="unk">
+    <article>
+      <h3>預貯金はいくらあるか</h3>
+      <p class="q">「もしものときにすぐ使える預金は、生活費の何か月分くらいありますか？」</p>
+      <p class="note">金額をそのまま聞くより、月数で聞くと答えてもらいやすくなります。<br>NISA・財形・社内預金・学資保険・児童手当を貯めている口座も一緒に聞きます。</p>
+      <span class="k">答えで変わること</span>
+      <ul>
+        <li>生活費の6か月分（約210万）以上あれば、傷病手当金の時期の不足（月約6万）は預金で受けられます。保険は1年6か月後の谷に集中させ、5年型か満了までを軸にします。</li>
+        <li>100万に届かないなら、入院一時金や5疾病の初期入院30万が効きます。変額保険の月額を少し下げて、先に預金を厚くする順番も考えます。</li>
+        <li>預金や親からの援助の見込みが大きければ、家計保障の月額（15万）を下げる余地があります。</li>
+        <li>教育費の準備がどこまで進んでいるかで、亡くなったときに必要な額が変わります。</li>
+      </ul>
+    </article>
+    <article>
+      <h3>お二人の持病・通院・健診の結果</h3>
+      <p class="q">「この5年で、入院や手術、続けて飲んでいるお薬はありますか？会社の健診で再検査になった項目はありますか？」</p>
+      <p class="note">告知書の質問の順に聞くと、そのまま申込みの準備になります。<br>奥さまは出産のとき（帝王切開など）のことも聞きます。<br>健診結果のコピーをいただけると、料率の判定に使えます。</p>
+      <span class="k">答えで変わること</span>
+      <ul>
+        <li>今回の保険料は「非喫煙・健康体」の料率です。たばこや血圧・体重の数値によっては標準料率になり、保険料が上がります。</li>
+        <li>持病や既往歴があると、加入できない・部位の不担保がつく・特別条件がつく場合があります。判断するのは保険会社なので、先に設計書と告知の見込みをそろえます。</li>
+        <li>通常の医療保険が難しい場合は、引受基準緩和型の医療保険に切り替えて組み直します。</li>
+        <li>いま入院・通院中のことがあると、就業不能の保障がその病気では出ないことがあります。</li>
+      </ul>
+    </article>
+    <article>
+      <h3>ご家族の病歴（がん家系かどうか）</h3>
+      <p class="q">「ご両親やご兄弟で、がんや心臓・脳の病気をされた方はいらっしゃいますか？何歳ごろでしたか？」</p>
+      <p class="note">お二人それぞれのご両親を聞きます。<br>若いうちに発症した方がいるかどうかが目安になります。</p>
+      <span class="k">答えで変わること</span>
+      <ul>
+        <li>がんが多いご家系なら、がん診断特約（診断されたら一時金）を足します。例：36歳男性・100万円・終身払で月2,796円。</li>
+        <li>心臓や脳の病気が多いご家系なら、特定治療支援特約の金額を上げるか、3大疾病の入院日数を無制限にする特約（36歳男性で月285円）を足します。</li>
+        <li>住宅ローンの団信が一般団信のままなので、借り換えのときにがん団信を選べるかも一緒に確認します。</li>
+        <li>自由診療のがん治療（がん特定治療保障特約）は、今回のプランにすでに入っています。</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section aria-labelledby="risk">
+  <h2 id="risk">①このご家庭のリスク　4つの場面</h2>
+  <p class="lead">赤い線が「出ていくお金」です。<br>棒が赤い線に届かない分が、毎月の不足です。</p>
+  <div class="legend">
+    <span><i style="background:var(--pub)"></i>公的保障など</span>
+    <span><i style="background:var(--wife)"></i>働いている人の手取り</span>
+    <span><i style="background:var(--ins)"></i>今回の提案</span>
+    <span><i style="background:var(--red);width:4px"></i>出ていくお金</span>
+  </div>
+  <div class="toggle" role="group" aria-label="提案を入れるか">
+    <button type="button" id="ins-on" aria-pressed="true">提案あり</button>
+    <button type="button" id="ins-off" aria-pressed="false">いまのまま</button>
+  </div>
+  <div class="toggle" role="group" aria-label="夫の就業不能の支払期間">
+    <button type="button" class="per" data-per="2" aria-pressed="false">働けないときの保障　2年</button>
+    <button type="button" class="per" data-per="5" aria-pressed="true">5年</button>
+  </div>
+  <div class="scen" id="scen"></div>
+</section>
+
+<section aria-labelledby="plan">
+  <h2 id="plan">提案プラン</h2>
+  <p class="lead">夫の「働けないとき」の支払期間と、医療の払い方を切り替えると、月額と合計が変わります。</p>
+  <div class="toggle" role="group" aria-label="夫の就業不能の支払期間（プラン）">
+    <button type="button" class="per" data-per="2" aria-pressed="false">働けないときの保障　2年</button>
+    <button type="button" class="per" data-per="5" aria-pressed="true">5年</button>
+  </div>
+  <div class="toggle" role="group" aria-label="医療保険の払い方">
+    <button type="button" id="pay-life" aria-pressed="true">医療は終身払</button>
+    <button type="button" id="pay-65" aria-pressed="false">医療は65歳払込</button>
+  </div>
+  <div class="tbl"><table id="plantbl"></table></div>
+  <div class="totals" id="totals"></div>
+  <p class="note"><span class="est">（仮）</span>は設計書の実例からの推計です。<br>非喫煙・健康体の料率を前提にしています。<br>喫煙ありや健診の数値によっては上がります。</p>
+</section>
+
+<section aria-labelledby="med">
+  <h2 id="med">医療　終身払と65歳払込の分かれ目</h2>
+  <p class="lead">払い込む合計が逆転する年齢を見ます。<br>先進医療と自由診療の特約は更新型なので、どちらの払い方でも65歳以降も保険料が続きます（ここでは比べる対象から外しています）。</p>
+  <div class="toggle" role="group" aria-label="医療の比較対象">
+    <button type="button" id="med-h" aria-pressed="true">夫</button>
+    <button type="button" id="med-w" aria-pressed="false">妻</button>
+  </div>
+  <div class="chart" id="medchart"></div>
+  <p id="medtxt"></p>
+</section>
+
+<section aria-labelledby="ml">
+  <h2 id="ml">変額保険（マーケットリンク）80歳まで</h2>
+  <p class="lead">設計書の解約返戻金の例表（費用を引いたあとの利回り 0%／2.75%／5.5%）を、月額に合わせて縮めた数字です。<br>払った合計を下回ることもあります。</p>
+  <div class="toggle" role="group" aria-label="変額保険の対象">
+    <button type="button" id="ml-h" aria-pressed="true">夫　月2万</button>
+    <button type="button" id="ml-w" aria-pressed="false">妻　月1万</button>
+  </div>
+  <div class="chart" id="mlchart"></div>
+  <div class="tbl"><table id="mltbl"></table></div>
+  <p class="note" id="mlnote"></p>
+</section>
+
+<section aria-labelledby="appr">
+  <h2 id="appr">②就業不能をどう切り出すか</h2>
+  <div class="withbot">
+    <img src="img/mascot_point.webp" alt="" width="96" height="96">
+    <p>商品の話からは入りません。<br>ご主人と奥さまが「うちは、そこが空いていたのか」と気づく順番で進めます。</p>
+  </div>
+  <ol class="steps">
+    <li><div><b>団信の範囲を一緒に確かめる</b>
+      一般団信は、亡くなったときと高度障害のときだけローンが消えます。<br>病気やけがで長く休んでも、月11万の返済は続きます。
+      <span class="say">「もし来月から1年、お仕事を休むことになったら、住宅ローンはどうなると思われますか？」</span></div></li>
+    <li><div><b>公的保障を先に見せる</b>
+      会社員の強みを先に伝えます。<br>最初の1年6か月は傷病手当金（月給の約3分の2）、その後は認定されれば障害年金です。<br>全部を保険で備えなくていい、と分かると話を聞いてもらえます。</div></li>
+    <li><div><b>1年6か月後の「谷」を数字で見せる</b>
+      障害年金が3級なら公的分は月約5.8万です。<br>妻のパートを足しても、出ていくお金に月20万ほど届きません。<br>うつ病などで等級に届かないと、公的分は0です。</div></li>
+    <li><div><b>奥さま側の空白も同じ図で見せる</b>
+      扶養内のパートは傷病手当金がありません。<br>入院すると収入が止まり、子どもの預け先や家事の外注費が増えます。
+      <span class="say">「奥さまが2か月入院されたら、保育園のお迎えはどなたが行かれますか？」</span></div></li>
+    <li><div><b>余力の範囲で、谷だけを埋める</b>
+      毎月の余力は約12.9万です。<br>夫は2年型なら月約6,100円、5年型なら月約9,500円（仮）で、働けないときの月15万と亡くなったときの月15万を同時に用意できます。<br>2年と5年の差は月約3,400円、65歳までで約123万円です。<br>受け取れる額の差は、15万×36か月の540万円です。</div></li>
+  </ol>
+  <h3>面談で聞いておくこと</h3>
+  <div class="ask">
+    <div><b>会社の制度</b>休職の期間・有給の残り・団体の所得補償（GLTD）・健保の付加給付</div>
+    <div><b>住宅ローン</b>金利タイプ（変動か固定か）・完済の年齢・団信の種類（がん団信の有無）</div>
+    <div><b>喫煙</b>紙巻き・加熱式・電子たばこのどれか。料率が変わります</div>
+    <div><b>奥さまの働き方</b>勤務先の社会保険の加入・今後フルタイムに戻すか</div>
+    <div><b>教育の方針</b>私立中学・大学の文理・下宿の有無。死亡保障の厚みが変わります</div>
+    <div><b>既契約の終身500万</b>保険料・払込期間・受取人。残して葬儀費用にあてる前提です</div>
+  </div>
+</section>
+
+<section aria-labelledby="src">
+  <h2 id="src">数字の出どころと注意</h2>
+  <div class="src">
+    <ul>
+      <li>保険料は、東京海上日動あんしん生命の実際の設計書（fulfull作成分）から、近い年齢・同じ保障のものを当てています。家計保障NEO＋は36歳男性（2026年9月作成）、医療は36歳男性（2026年8〜9月）と33歳女性（2025年11月）、就業不能は41歳女性（2026年10月）、変額は36歳男性（2026年8月）と33歳女性（2025年11月）の例表です。</li>
+      <li>（仮）の数字は、上の実例から年齢差・払込期間の比で推計しました。正式な金額は35歳男性・33歳女性で設計書を作って差し替えます。</li>
+      <li>就業不能の特約5年型（月6,500円）は推計です。同じ人の設計書で5年型が2年型の約2倍（39歳男性・旧NEO：15万・5年 5,520円／20万・2年 3,640円）、NEO＋の42歳男性で15万・5年 8,745円の実例から置きました。支払期間は「保険期間満了まで」も選べるので、3通りで設計書を出して比べます。</li>
+      <li>がん診断特約・3大疾病入院無制限特約の金額は、36歳男性の設計書（2026年9月作成・終身払）の実例です。</li>
+      <li>医療の特定治療支援特約Ⅰ型50万は、100万の設計書の半額で置いています。</li>
+      <li>公的保障は2026年度の額です。遺族基礎年金847,300円＋子の加算243,800円×2、中高齢寡婦加算635,500円。遺族厚生・障害厚生年金は平均標準報酬額42万円・300月みなしで概算しました（日本年金機構）。</li>
+      <li>傷病手当金は標準報酬月額41万円の3分の2から、休職中も払う社会保険料と住民税を引いた手取りで約21.3万円としています。</li>
+      <li>変額保険の数字は設計書の例示の利回りで計算したもので、将来をお約束するものではありません。最低保証はなく、10年未満の解約には解約控除があります。夫は35歳加入で払込45年のため、最後の1年分は36歳の例表から延長した推計です。</li>
+      <li>2028年4月から遺族年金の子の加算の引き上げなど制度の見直しが予定されています。</li>
+      <li>設定は架空のモデルケースです。お客さまに渡す前に、数字は設計書で確かめます。</li>
+    </ul>
+  </div>
+  <div class="withbot"><img src="img/mascot_base.webp" alt="" width="96" height="96"><p class="note">数字は設計書が出たら差し替えます。<br>仕上げと最終判断は、募集人本人が行います。</p></div>
+</section>
+
+</div>
+
+<script>
+const ML = {"h":[[36,0,0,0,240000],[37,16,17,18,480000],[38,35,38,40,720000],[39,54,58,62,960000],[40,74,80,87,1200000],[41,93,102,112,1440000],[42,113,125,139,1680000],[43,132,148,166,1920000],[44,150,171,195,2160000],[45,169,195,225,2400000],[46,185,217,254,2640000],[47,201,239,285,2880000],[48,217,261,317,3120000],[49,233,284,350,3360000],[50,248,308,386,3600000],[51,262,332,423,3840000],[52,277,355,462,4080000],[53,292,380,503,4320000],[54,306,405,546,4560000],[55,321,431,591,4800000],[56,335,456,640,5040000],[57,348,482,690,5280000],[58,361,510,744,5520000],[59,374,537,800,5760000],[60,387,564,859,6000000],[61,400,593,923,6240000],[62,413,622,990,6480000],[63,425,651,1061,6720000],[64,437,681,1138,6960000],[65,448,712,1218,7200000],[66,459,743,1305,7440000],[67,469,774,1396,7680000],[68,480,806,1492,7920000],[69,490,839,1593,8160000],[70,501,872,1700,8400000],[71,511,906,1813,8640000],[72,521,942,1933,8880000],[73,532,978,2058,9120000],[74,542,1016,2190,9360000],[75,553,1055,2331,9600000],[76,565,1096,2478,9840000],[77,578,1141,2634,10080000],[78,594,1187,2798,10320000],[79,611,1238,2971,10560000],[80,628,1288,3145,10800000]],"w":[[34,0,0,0,120000],[35,5,6,6,240000],[36,15,16,18,360000],[37,25,27,29,480000],[38,35,38,42,600000],[39,45,49,54,720000],[40,55,61,68,840000],[41,65,73,82,960000],[42,74,85,97,1080000],[43,84,97,112,1200000],[44,92,108,127,1320000],[45,101,119,142,1440000],[46,109,131,159,1560000],[47,117,143,176,1680000],[48,125,155,194,1800000],[49,133,167,213,1920000],[50,141,180,233,2040000],[51,149,193,254,2160000],[52,156,206,276,2280000],[53,164,220,299,2400000],[54,172,233,324,2520000],[55,179,247,350,2640000],[56,187,262,377,2760000],[57,195,277,406,2880000],[58,202,292,437,3000000],[59,210,308,469,3120000],[60,217,324,503,3240000],[61,225,340,539,3360000],[62,232,357,577,3480000],[63,239,375,618,3600000],[64,247,392,660,3720000],[65,254,410,706,3840000],[66,261,429,754,3960000],[67,268,448,805,4080000],[68,275,467,858,4200000],[69,282,487,915,4320000],[70,289,508,974,4440000],[71,296,529,1037,4560000],[72,303,550,1103,4680000],[73,309,572,1173,4800000],[74,316,595,1247,4920000],[75,323,618,1325,5040000],[76,330,642,1407,5160000],[77,338,668,1494,5280000],[78,345,694,1586,5400000],[79,353,721,1682,5520000],[80,362,750,1784,5640000]]};
+const yen = n => n.toLocaleString('ja-JP');
+const $ = id => document.getElementById(id);
+function press(on, off){ on.setAttribute('aria-pressed','true'); off.forEach(b=>b.setAttribute('aria-pressed','false')); }
+
+/* ---------- ① 場面 ---------- */
+const SCEN = [
+  {tag:'場面1', title:'夫が亡くなる', desc:'団信でローンは0になります。生活費は約21万に下がります（ローン11万と夫の小遣い等3万が減る）。遺族年金は子が18歳の年度末まで厚く、その後は中高齢寡婦加算に切り替わります。',
+   rows:[{lab:'子が小さい間（妻33〜48歳）',need:21,pub:15.5,pubL:'遺族年金15.5',wife:9.6,ins:15,insL:'家計保障15'},
+         {lab:'子の独立後（妻48〜63歳）',need:18,pub:9.6,pubL:'遺族厚生＋寡婦加算9.6',wife:9.6,ins:15,insL:'家計保障15'}],
+   foot:'余りは教育費（2人で約1,000万〜）と妻の老後に回す分です。家計保障は夫が65歳まで続きます。'},
+  {tag:'場面2', title:'夫が病気やけがで長く働けない', desc:'ローンは残ります。治療費が月2万ほど加わると見ています。特約が出るのは、がん・急性心筋梗塞・脳卒中など所定の5疾病で入院や在宅療養が60日を超えたとき、または所定の障害・介護状態のときです。最初の1年6か月は傷病手当金、その後は障害年金の等級しだいです。',
+   rows:[{lab:'休みはじめ〜1年6か月',need:37,pub:21.3,pubL:'傷病手当金21.3',wife:9.6,ins:15,insL:'特約15'},
+         {lab:'1年6か月後・障害年金3級',need:37,pub:5.8,pubL:'5.8',wife:9.6,ins:15,insL:'特約15'},
+         {lab:'2年を過ぎて・3級のまま（〜5年）',need:37,pub:5.8,pubL:'5.8',wife:9.6,ins:15,only5:true,insL:'特約15（5年型）'}],
+   foot:'障害年金2級なら公的分は月約18.9万（子の加算・配偶者加給込み）。2年型は、傷病手当金がある時期とほぼ重なり、いちばん苦しい1年6か月後の谷の途中で終わります。5年型は、その谷を長男が11歳・長女が8歳になるころまで埋めます。うつ病などの精神疾患や腰痛は5疾病に入らないため、障害状態に届かないと特約も出ません。'},
+  {tag:'場面3', title:'妻が病気やけがで働けない', desc:'扶養内のパートは傷病手当金がありません。パート代が止まり、一時保育や家事代行で月3万ほど増えると見ています。',
+   rows:[{lab:'妻が働けない間',need:38,pub:0,pubL:'',wife:38.3,wifeL:'夫の手取り38.3',ins:10,insL:'あんしゅう10'}],
+   foot:'足りてはいますが、毎月の余力12.9万がほぼ0になります。教育費の積み立てが止まるのを防ぐのが、月10万の役目です。'},
+];
+let insOn = true; let per = 5;
+function drawScen(){
+  const max = 62;
+  $('scen').innerHTML = SCEN.map(s=>`
+    <article class="sc"><span class="tag">${s.tag}</span><h3>${s.title}</h3><p>${s.desc}</p>
+    <div class="bars">${s.rows.map(r=>{
+      const ins = (insOn && !(r.only5 && per===2)) ? r.ins : 0;
+      const total = r.pub + r.wife + ins; const diff = +(total - r.need).toFixed(1);
+      const p = v => (v/max*100);
+      let x=0; const segs=[];
+      if(r.pub>0){segs.push(`<span class="seg pub first" style="left:0;width:${p(r.pub)}%">${r.pub>=4?(r.pubL||r.pub):''}</span>`); x+=r.pub;}
+      segs.push(`<span class="seg wife ${x===0?'first':''}" style="left:${p(x)}%;width:${p(r.wife)}%">${r.wifeL||('妻'+r.wife)}</span>`); x+=r.wife;
+      if(ins>0) segs.push(`<span class="seg ins" style="left:${p(x)}%;width:${p(ins)}%">${r.insL}</span>`);
+      return `<div class="bar"><div class="lab"><span>${r.lab}</span><span class="gap ${diff<0?'ng':'ok'} num">${diff<0?'毎月 '+Math.abs(diff).toFixed(1)+'万 足りない':'毎月 '+diff.toFixed(1)+'万 余る'}</span></div>
+        <div class="track" role="img" aria-label="${r.lab}：出ていくお金${r.need}万、入るお金${total.toFixed(1)}万">${segs.join('')}<span class="need" style="left:calc(${p(r.need)}% - 1px)"></span></div></div>`;
+    }).join('')}</div><p>${s.foot}</p></article>`).join('') + `
+    <article class="sc"><span class="tag">場面4</span><h3>がん・脳卒中・心筋梗塞で治療が長引く</h3>
+    <p>高額療養費で、保険のきく治療の自己負担は月約9万が上限です（年収約600万の区分・2026年10月時点の額は要確認）。<br>上限の外にあるのが、自由診療・先進医療・差額ベッド・通院の交通費です。</p>
+    <p>今回の医療保険は、入院すると一時金5万円と日額5,000円、所定の3大疾病の治療で50万円（特定治療支援Ⅰ型）、自由診療のがん治療は実費（がん特定治療保障特約）、先進医療は技術料を受け取れる形です。</p></article>`;
+}
+$('ins-on').onclick = ()=>{insOn=true; press($('ins-on'),[$('ins-off')]); drawScen();};
+$('ins-off').onclick = ()=>{insOn=false; press($('ins-off'),[$('ins-on')]); drawScen();};
+drawScen();
+
+/* ---------- 提案プラン ---------- */
+const PLAN = {
+  h:{name:'夫（35歳）', items:[
+    {n:'家計保障定期保険NEO＋', d:'亡くなったとき月15万・65歳まで（最低支払保証2年）', life:3045, p65:3045},
+    {n:'5疾病・障害・介護家計保障特約（B型）', d:'働けないとき月15万・給付金支払期間2年・65歳まで', life:3090, p65:3090, per2:true},
+    {n:'5疾病・障害・介護家計保障特約（B型）', d:'働けないとき月15万・給付金支払期間5年・65歳まで', life:6500, p65:6500, est:true, est65:true, per5:true},
+    {n:'メディカルKit NEO（60日型）', d:'入院日額5,000円', life:2090, p65:2720},
+    {n:'　入院一時給付金特約', d:'5万円', life:739, p65:1080, est65:true},
+    {n:'　特定治療支援特約（Ⅰ型）', d:'50万円', life:1790, p65:2430, est:true, est65:true},
+    {n:'　がん特定治療保障特約', d:'自由診療のがん治療（5年更新）', life:551, p65:551},
+    {n:'　先進医療特約', d:'技術料（10年更新）', life:129, p65:129},
+    {n:'マーケットリンク（変額保険）', d:'基本保険金額 約1,240万・80歳まで', life:20000, p65:20000},
+  ]},
+  w:{name:'妻（33歳）', items:[
+    {n:'あんしん就業不能保障保険＋（B型）', d:'働けないとき月10万・給付金支払期間2年・65歳まで', life:2000, p65:2000, est:true, est65:true},
+    {n:'メディカルKit NEO（60日型）', d:'入院日額5,000円', life:1875, p65:2600, est65:true},
+    {n:'　入院一時給付金特約', d:'5万円', life:643, p65:1120, est65:true},
+    {n:'　特定治療支援特約（Ⅰ型）', d:'50万円', life:1762, p65:2080, est65:true},
+    {n:'　がん特定治療保障特約', d:'自由診療のがん治療（5年更新）', life:626, p65:626},
+    {n:'　先進医療特約', d:'技術料（10年更新）', life:149, p65:149},
+    {n:'マーケットリンク（変額保険）', d:'基本保険金額 約750万・80歳まで', life:10000, p65:10000},
+  ]}
+};
+let pay = 'life';
+function drawPlan(){
+  const k = pay; let rows = `<tr><th>商品</th><th>保障の中身</th><th class="r">月額（円）</th></tr>`; const sums={};
+  for(const who of ['h','w']){
+    const P = PLAN[who]; let s=0;
+    rows += `<tr class="who"><td colspan="3">${P.name}</td></tr>`;
+    for(const it of P.items.filter(i=>!(i.per2&&per===5)&&!(i.per5&&per===2))){ const v = it[k]; s+=v; const e = (k==='life'?it.est:it.est65);
+      rows += `<tr><td>${it.n}</td><td>${it.d}</td><td class="r">${yen(v)}${e?' <span class="est">（仮）</span>':''}</td></tr>`; }
+    rows += `<tr class="sum"><td colspan="2">${P.name.replace(/（.*）/,'')}の合計</td><td class="r">${yen(s)}</td></tr>`; sums[who]=s;
+  }
+  $('plantbl').innerHTML = rows;
+  const prot = who => PLAN[who].items.filter(i=>!i.n.startsWith('マーケット')&&!(i.per2&&per===5)&&!(i.per5&&per===2)).reduce((a,i)=>a+i[k],0);
+  const all = sums.h+sums.w;
+  $('totals').innerHTML = `
+    <div><span>世帯の合計（月）</span><b class="num">${yen(all)}円</b><span>うち変額保険 30,000円</span></div>
+    <div><span>保障の部分だけ（月）</span><b class="num">${yen(prot('h')+prot('w'))}円</b><span>夫 ${yen(prot('h'))}円／妻 ${yen(prot('w'))}円</span></div>
+    <div><span>余力12.9万に占める割合</span><b class="num">${Math.round(all/129000*100)}%</b><span>残りは預金・NISA・教育費へ</span></div>`;
+}
+$('pay-life').onclick=()=>{pay='life';press($('pay-life'),[$('pay-65')]);drawPlan();};
+$('pay-65').onclick=()=>{pay='p65';press($('pay-65'),[$('pay-life')]);drawPlan();};
+drawPlan();
+document.querySelectorAll('.per').forEach(b=>b.onclick=()=>{per=+b.dataset.per;document.querySelectorAll('.per').forEach(x=>x.setAttribute('aria-pressed',String(+x.dataset.per===per)));drawScen();drawPlan();});
+
+/* ---------- 医療の分かれ目 ---------- */
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function svgLine(pts, sx, sy, color, w, dash){ return `<polyline fill="none" stroke="${color}" stroke-width="${w}" ${dash?`stroke-dasharray="${dash}"`:''} stroke-linejoin="round" points="${pts.map(p=>sx(p[0]).toFixed(1)+','+sy(p[1]).toFixed(1)).join(' ')}"/>`; }
+let medWho='h';
+function drawMed(){
+  const cfg = medWho==='h' ? {age:35, life:2090+739+1790, p65:2720+1080+2430, name:'夫'} : {age:33, life:1875+643+1762, p65:2600+1120+2080, name:'妻'};
+  const W=760,H=320,L=64,R=20,T=20,B=40, a0=cfg.age, a1=95, ymax=360;
+  const sx=a=>L+(a-a0)/(a1-a0)*(W-L-R), sy=v=>T+(1-v/ymax)*(H-T-B);
+  const lifePts=[],p65Pts=[]; let cross=null;
+  for(let a=a0;a<=a1;a++){ const y=a-a0; const lv=cfg.life*12*y/10000; const pv=cfg.p65*12*Math.min(y,65-a0)/10000; lifePts.push([a,lv]); p65Pts.push([a,pv]); if(cross===null && lv>=pv && a>65) cross=a; }
+  const grid=[0,50,100,150,200,250,300,350].map(v=>`<line x1="${L}" x2="${W-R}" y1="${sy(v)}" y2="${sy(v)}" stroke="${css('--line')}"/><text x="${L-8}" y="${sy(v)+5}" text-anchor="end" font-size="13" fill="${css('--ink2')}">${v}万</text>`).join('');
+  const xt=[a0,45,55,65,75,85,95].map(a=>`<text x="${sx(a)}" y="${H-14}" text-anchor="middle" font-size="13" fill="${css('--ink2')}">${a}歳</text>`).join('');
+  const cx = cross? `<line x1="${sx(cross)}" x2="${sx(cross)}" y1="${T}" y2="${H-B}" stroke="${css('--red')}" stroke-dasharray="4 4"/><text x="${sx(cross)+6}" y="${T+14}" font-size="14" font-weight="700" fill="${css('--red')}">${cross}歳で逆転</text>`:'';
+  const end = lifePts[lifePts.length-1][1], e65=p65Pts[p65Pts.length-1][1];
+  $('medchart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${cfg.name}の医療保険 払込合計の比較">${grid}${xt}
+    ${svgLine(lifePts,sx,sy,css('--teal'),3)}${svgLine(p65Pts,sx,sy,css('--gold'),3)}${cx}
+    <text x="${sx(a1)-4}" y="${sy(end)-8}" text-anchor="end" font-size="14" font-weight="700" fill="${css('--teal')}">終身払 ${Math.round(end)}万</text>
+    <text x="${sx(a1)-4}" y="${sy(e65)+20}" text-anchor="end" font-size="14" font-weight="700" fill="${css('--gold')}">65歳払込 ${Math.round(e65)}万</text></svg>`;
+  $('medtxt').innerHTML = `${cfg.name}は、主契約・一時金・特定治療の3つで比べると、終身払が月${yen(cfg.life)}円、65歳払込が月${yen(cfg.p65)}円です。<br>${cross}歳より長く生きると65歳払込の方が払う合計が少なくなります。<br>年金生活に入ってから保険料を残したくない方には65歳払込、いまの家計を軽くしたい方には終身払が合います。`;
+}
+$('med-h').onclick=()=>{medWho='h';press($('med-h'),[$('med-w')]);drawMed();};
+$('med-w').onclick=()=>{medWho='w';press($('med-w'),[$('med-h')]);drawMed();};
+drawMed();
+
+/* ---------- 変額 ---------- */
+let mlWho='h';
+function drawML(){
+  const d = ML[mlWho]; const base = mlWho==='h'?1240:750;
+  const W=760,H=340,L=64,R=96,T=20,B=40; const a0=d[0][0]-1, a1=d[d.length-1][0];
+  const ymax = mlWho==='h'?3200:1800; const step = mlWho==='h'?500:300;
+  const sx=a=>L+(a-a0)/(a1-a0)*(W-L-R), sy=v=>T+(1-v/ymax)*(H-T-B);
+  let grid=''; for(let v=0;v<=ymax;v+=step) grid+=`<line x1="${L}" x2="${W-R}" y1="${sy(v)}" y2="${sy(v)}" stroke="${css('--line')}"/><text x="${L-8}" y="${sy(v)+5}" text-anchor="end" font-size="13" fill="${css('--ink2')}">${yen(v)}万</text>`;
+  const ticks=[]; for(let a=Math.ceil((a0+1)/5)*5;a<=a1;a+=5) ticks.push(a);
+  const xt=ticks.map(a=>`<text x="${sx(a)}" y="${H-14}" text-anchor="middle" font-size="13" fill="${css('--ink2')}">${a}歳</text>`).join('');
+  const col=(i)=>[[a0,0],...d.map(r=>[r[0],r[i]])];
+  const paid=[[a0,0],...d.map(r=>[r[0],r[4]/10000])];
+  const last=d[d.length-1];
+  const lab=(v,c,t,dy)=>`<text x="${sx(a1)+6}" y="${sy(v)+5+(dy||0)}" font-size="13.5" font-weight="700" fill="${c}">${t}</text>`;
+  $('mlchart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="変額保険の解約返戻金の推移">${grid}${xt}
+    ${svgLine(paid,sx,sy,css('--ink2'),2,'6 5')}
+    ${svgLine(col(1),sx,sy,css('--pub'),2.5)}${svgLine(col(2),sx,sy,css('--teal'),3)}${svgLine(col(3),sx,sy,css('--gold'),3.5)}
+    ${lab(last[3],css('--gold'),'5.5% '+yen(last[3])+'万')}
+    ${lab(last[2],css('--teal'),'2.75% '+yen(last[2])+'万',-8)}
+    ${lab(Math.round(last[4]/10000),css('--ink2'),'払込 '+yen(Math.round(last[4]/10000))+'万',10)}
+    ${lab(last[1],css('--pub'),'0% '+yen(last[1])+'万',14)}</svg>`;
+  const pick=[45,50,55,60,65,70,75,80];
+  let t=`<tr><th>年齢</th><th class="r">払った合計</th><th class="r">0%</th><th class="r">2.75%</th><th class="r">5.5%</th><th class="r">万一のとき（5.5%）</th></tr>`;
+  for(const r of d.filter(r=>pick.includes(r[0]))) t+=`<tr><td>${r[0]}歳</td><td class="r">${yen(Math.round(r[4]/10000))}万</td><td class="r">${yen(r[1])}万</td><td class="r">${yen(r[2])}万</td><td class="r">${yen(r[3])}万</td><td class="r">${yen(Math.max(base,r[3]))}万</td></tr>`;
+  $('mltbl').innerHTML=t;
+  $('mlnote').innerHTML = mlWho==='h'
+    ? `夫は月2万を45年、合計1,080万円払います。<br>亡くなったときは基本保険金額の約1,240万円か積立金の多い方が出ます。<br>65歳時点の目安は2.75%で約712万、5.5%で約1,218万です。<br>60歳以上かつ10年経過で、告知なしに終身保険や介護保障付終身へ変えられます。`
+    : `妻は月1万を47年、合計564万円払います。<br>亡くなったときは基本保険金額の約750万円か積立金の多い方が出ます。<br>65歳時点の目安は2.75%で約410万、5.5%で約706万です。<br>夫の万一のときも、妻の分は自分の老後資金として残ります。`;
+}
+$('ml-h').onclick=()=>{mlWho='h';press($('ml-h'),[$('ml-w')]);drawML();};
+$('ml-w').onclick=()=>{mlWho='w';press($('ml-w'),[$('ml-h')]);drawML();};
+drawML();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{drawMed();drawML();});
+new MutationObserver(()=>{drawMed();drawML();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>
