@@ -824,6 +824,18 @@ body.scroll .s-mirai2 *{opacity:1!important;animation:none!important}
 @keyframes qzIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
 body.scroll .s-quiz .qz-c{opacity:1;animation:none}
 .s-quiz .foot,.s-quiz .foot *{color:#9FC9BF!important}
+.s-quiz h1{font-size:46px!important;margin:0 0 16px!important}
+.s-quiz .qz-set{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px}
+.s-quiz .qz-g{display:grid;grid-template-columns:84px repeat(4,1fr);gap:8px;align-items:stretch;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,231,106,.35);border-radius:16px;padding:10px}
+.s-quiz .qz-gl{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#FFE76A;color:#0F2E29;border-radius:10px;font-size:22px;font-weight:900;line-height:1.1}
+.s-quiz .qz-g.l .qz-gl{background:#7FD3C4}
+.s-quiz .qz-gl small{font-size:12px;font-weight:800;margin-top:3px}
+.s-quiz .qz-it{background:#fff;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px;gap:4px;text-align:center}
+.s-quiz .qz-it .pic{width:34px;height:34px}
+.s-quiz .qz-it span{font-size:12.5px;font-weight:800;color:#0F4A40;line-height:1.3}
+.s-quiz .qz-c{padding:28px 20px 18px!important}
+.s-quiz .qz-c b{font-size:68px!important}
+.s-quiz .qz-note{margin-top:16px!important}
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
@@ -1304,11 +1316,15 @@ body.scroll .s-quiz .qz-c{opacity:1;animation:none}
 
 <div class="frame"><section data-sec="⑦ ご案内" data-time="20:54〜21:11" class="slide s-quiz">
 <div class="qz-top"><span class="qz-tag">ここで、1つ質問</span><span class="qz-chat">💬 チャットに A・B・C の1文字</span></div>
-<h1>今日見た右腕と左腕。<br><em>外に頼んだら、いくら</em>？</h1>
+<h1>右腕と左腕、<em>全部外注したら、いくら</em>？</h1>
+<div class="qz-set">
+ <div class="qz-g"><div class="qz-gl">右腕<small>集客</small></div><div class="qz-it"><svg class="pic m" aria-hidden="true"><use href="#i-agent"/></svg><span>強みの分析</span></div><div class="qz-it"><svg class="pic m" aria-hidden="true"><use href="#i-mega"/></svg><span>発信ネタ</span></div><div class="qz-it"><svg class="pic m" aria-hidden="true"><use href="#i-phone"/></svg><span>1分診断ページ</span></div><div class="qz-it"><svg class="pic m" aria-hidden="true"><use href="#i-line"/></svg><span>LINE自動応答</span></div></div>
+ <div class="qz-g l"><div class="qz-gl">左腕<small>面談のあと</small></div><div class="qz-it"><svg class="pic m" aria-hidden="true"><use href="#i-video"/></svg><span>録画→議事録</span></div><div class="qz-it"><svg class="pic m" aria-hidden="true"><use href="#i-doc"/></svg><span>提案書の下書き</span></div><div class="qz-it"><svg class="pic m" aria-hidden="true"><use href="#i-line"/></svg><span>お礼の文面</span></div><div class="qz-it"><svg class="pic m" aria-hidden="true"><use href="#i-cal"/></svg><span>次回の案内</span></div></div>
+</div>
 <div class="qz-cards">
  <div class="qz-c" style="--d:.2s"><i>A</i><b>50<small>万円</small></b><span>くらい</span></div>
  <div class="qz-c" style="--d:.5s"><i>B</i><b>100<small>万円</small></b><span>くらい</span></div>
- <div class="qz-c" style="--d:.8s"><i>C</i><b>150<small>万円</small></b><span>以上</span></div>
+ <div class="qz-c" style="--d:.8s"><i>C</i><b>200<small>万円</small></b><span>以上</span></div>
 </div>
 <p class="qz-note">直感で大丈夫です。答えは、次のページで。</p>
 </section></div>
