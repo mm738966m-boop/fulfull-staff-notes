@@ -807,6 +807,23 @@ body.scroll .s-mirai2 *{opacity:1!important;animation:none!important}
 .ask3 div{background:#fff;color:#0F4A40;border-radius:14px;padding:14px 22px;font-size:26px;font-weight:900;display:flex;align-items:center;gap:12px;box-shadow:0 6px 14px rgba(0,0,0,.18)}
 .ask3 b{background:#F07A1C;color:#fff;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px}
 #qr-consult-b img,#qr-consult-b canvas{width:118px!important;height:118px!important}
+.s-quiz{background:radial-gradient(ellipse at 20% 10%,#1B5A4E 0%,#0F2E29 65%)!important;color:#fff;justify-content:center}
+.s-quiz .qz-top{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.s-quiz .qz-tag{background:#FFE76A;color:#0F2E29;font-weight:900;font-size:20px;border-radius:999px;padding:6px 20px}
+.s-quiz .qz-chat{border:2px solid rgba(255,231,106,.6);color:#FFE76A;font-weight:800;font-size:18px;border-radius:999px;padding:5px 16px}
+.s-quiz h1{font-size:54px;color:#fff;line-height:1.3;margin:0 0 30px}
+.s-quiz h1 em{font-style:normal;color:#FFE76A;-webkit-text-fill-color:#FFE76A;background:none!important;box-shadow:none}
+.s-quiz .qz-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.s-quiz .qz-c{position:relative;background:linear-gradient(180deg,#fff,#F3FBF8);border-radius:22px;padding:34px 20px 26px;text-align:center;box-shadow:0 14px 30px rgba(0,0,0,.35);color:#0F4A40}
+.s-quiz .qz-c i{position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;background:#F07A1C;color:#fff;font-style:normal;font-weight:900;font-size:28px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(240,122,28,.45)}
+.s-quiz .qz-c b{display:block;font-size:84px;font-weight:900;line-height:1;letter-spacing:-.02em;margin-top:8px}
+.s-quiz .qz-c b small{font-size:30px;margin-left:4px}
+.s-quiz .qz-c span{display:block;font-size:22px;font-weight:800;color:#44605A;margin-top:8px}
+.s-quiz .qz-note{margin-top:26px;font-size:20px;color:#B5D9CF;font-weight:700}
+.frame.on .s-quiz .qz-c{opacity:0;animation:qzIn .6s cubic-bezier(.2,.9,.3,1.3) forwards;animation-delay:var(--d)}
+@keyframes qzIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+body.scroll .s-quiz .qz-c{opacity:1;animation:none}
+.s-quiz .foot,.s-quiz .foot *{color:#9FC9BF!important}
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
@@ -1285,13 +1302,15 @@ body.scroll .s-mirai2 *{opacity:1!important;animation:none!important}
 </section></div>
 
 
-<div class="frame"><section data-sec="⑦ ご案内" data-time="20:54〜21:11" class="slide s-hand s-ask">
-<div class="hd-in">
-<div class="eyebrow">ここで、1つ質問</div>
-<h1>今日見た右腕と左腕。<br><em>自分用に作ったら、いくら</em>？</h1>
-<p class="hd-s">外に頼んだら、いくら？　直感で、A・B・Cをチャットに。</p>
-<div class="ask3"><div><b>A</b>10万円くらい</div><div><b>B</b>50万円くらい</div><div><b>C</b>100万円以上</div></div>
+<div class="frame"><section data-sec="⑦ ご案内" data-time="20:54〜21:11" class="slide s-quiz">
+<div class="qz-top"><span class="qz-tag">ここで、1つ質問</span><span class="qz-chat">💬 チャットに A・B・C の1文字</span></div>
+<h1>今日見た右腕と左腕。<br><em>外に頼んだら、いくら</em>？</h1>
+<div class="qz-cards">
+ <div class="qz-c" style="--d:.2s"><i>A</i><b>50<small>万円</small></b><span>くらい</span></div>
+ <div class="qz-c" style="--d:.5s"><i>B</i><b>100<small>万円</small></b><span>くらい</span></div>
+ <div class="qz-c" style="--d:.8s"><i>C</i><b>150<small>万円</small></b><span>以上</span></div>
 </div>
+<p class="qz-note">直感で大丈夫です。答えは、次のページで。</p>
 </section></div>
 
 
