@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="description" content="Macでウイルス対策ソフトが要らない理由と、確かめる設定3つを写真つきで説明します。">
+<meta property="og:title" content="Macの安全設定ガイド">
+<meta property="og:description" content="Macは買った日からウイルス対策が動いています。確かめる設定は3つだけ・写真つき。">
+<meta property="og:url" content="https://mm738966m-boop.github.io/fulfull-staff-notes/mac-anzen/">
+<meta property="og:image" content="https://mm738966m-boop.github.io/fulfull-staff-notes/mac-anzen/img/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Macの安全設定ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+/* レイアウト：1本の縦の流れ。理由（Windowsとの違い）→Macの守り→やる設定3つ（写真つき手順）→気をつけること→困ったとき */
+:root{
+  --teal:#0E7C86; --deep:#0A5A62; --ink:#1C3236; --ink2:#4A6468; --soft:#EEF6F7; --line:#D5E4E6;
+  --gold:#A87A1F; --goldfill:#D9A441; --goldbg:#FBF4E3; --bg:#fff; --card:#fff;
+  --ok:#1F8A4C; --okbg:#E7F5EC; --warn:#B4462E; --warnbg:#FBECE7;
+  --round:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+  --body:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --teal:#4FC1CB; --deep:#8FDCE2; --ink:#E6F0F1; --ink2:#A9C0C3; --soft:#16292C; --line:#2A4246;
+  --gold:#E0B44E; --goldfill:#D9A441; --goldbg:#2B2414; --bg:#0F1D20; --card:#132427;
+  --ok:#6FD49A; --okbg:#143023; --warn:#F2957F; --warnbg:#35201A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --teal:#4FC1CB; --deep:#8FDCE2; --ink:#E6F0F1; --ink2:#A9C0C3; --soft:#16292C; --line:#2A4246;
+  --gold:#E0B44E; --goldfill:#D9A441; --goldbg:#2B2414; --bg:#0F1D20; --card:#132427;
+  --ok:#6FD49A; --okbg:#143023; --warn:#F2957F; --warnbg:#35201A; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;font-weight:500;line-height:1.9;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:22px 22px}
+.wrap{max-width:760px;margin:0 auto;padding-block:32px 64px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--round);font-weight:800;text-wrap:balance;word-break:auto-phrase;line-height:1.45;margin:0}
+h1{font-size:clamp(28px,6.4vw,40px);color:var(--deep)}
+h2{font-size:clamp(23px,4.8vw,29px);color:var(--deep);display:flex;align-items:center;gap:12px}
+h2 .no{flex:none;width:44px;height:44px;border-radius:50%;background:var(--teal);color:var(--bg);display:grid;place-items:center;font-size:22px}
+h3{font-size:21px;color:var(--ink)}
+p{margin:0}
+p,li span,figcaption,summary,.guard b{word-break:auto-phrase;text-wrap:pretty}
+.sec{display:flex;flex-direction:column;gap:20px}
+.lead{color:var(--ink2)}
+.small{font-size:15px;color:var(--ink2);line-height:1.75}
+/* ヒーロー */
+.hero{background:var(--soft);border:2px solid var(--line);border-radius:28px;padding:28px 24px;display:grid;grid-template-columns:1fr 170px;gap:16px;align-items:center}
+.hero .tag{display:inline-block;font-family:var(--round);font-weight:700;font-size:15px;background:var(--goldbg);color:var(--gold);border:1.5px solid var(--goldfill);border-radius:999px;padding:2px 14px;margin-bottom:12px}
+.hero img{width:100%;height:auto}
+.hero .say{margin-top:14px}
+@media (max-width:560px){.hero{grid-template-columns:1fr}.hero img{width:150px;justify-self:center;order:-1}}
+/* 比べるカード */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.vs .c{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:20px;min-width:0}
+.vs .c.mac{border-color:var(--teal)}
+.vs .c b{font-family:var(--round);font-size:19px;display:block;margin-bottom:6px}
+.vs .c.mac b{color:var(--teal)}
+@media (max-width:560px){.vs{grid-template-columns:1fr}}
+/* Macの守り一覧 */
+.guard{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.guard li{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 18px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:start}
+.guard .dot{grid-row:span 2;width:30px;height:30px;border-radius:50%;background:var(--okbg);color:var(--ok);display:grid;place-items:center;font-weight:800;font-family:var(--round);margin-top:2px}
+.guard b{font-family:var(--round);font-size:19px}
+.guard span{color:var(--ink2);min-width:0}
+.callout{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;background:var(--goldbg);border:2px solid var(--goldfill);border-radius:20px;padding:16px 20px}
+.callout img{width:100%;height:auto}
+@media (max-width:480px){.callout{grid-template-columns:80px 1fr}}
+/* 手順カード */
+.step{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:24px 22px;display:flex;flex-direction:column;gap:16px}
+.why{background:var(--soft);border-radius:14px;padding:12px 16px;color:var(--ink2)}
+.why b{color:var(--teal)}
+ol.do{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:10px}
+ol.do li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+ol.do li::before{content:counter(s);width:34px;height:34px;border-radius:50%;border:2px solid var(--teal);color:var(--teal);display:grid;place-items:center;font-family:var(--round);font-weight:800;font-size:17px;margin-top:2px}
+.key{display:inline-block;font-family:var(--round);font-weight:700;font-size:16px;border:1.5px solid var(--line);border-bottom-width:3px;border-radius:8px;padding:0 8px;background:var(--soft);line-height:1.6}
+figure{margin:0;display:flex;flex-direction:column;gap:8px}
+figure img{width:100%;height:auto;border-radius:14px;border:1.5px solid var(--line);display:block}
+figcaption{font-size:15px;color:var(--ink2);line-height:1.7}
+.mark{color:var(--warn);font-weight:700}
+.done{background:var(--okbg);color:var(--ok);border-radius:12px;padding:10px 14px;font-weight:700}
+/* 気をつけること */
+.trap{display:flex;flex-direction:column;gap:12px}
+.trap .t{background:var(--card);border:2px solid var(--line);border-left:6px solid var(--warn);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.trap .t b{font-family:var(--round);font-size:19px;color:var(--warn)}
+.trap .t .then{background:var(--warnbg);border-radius:10px;padding:8px 12px}
+/* 困ったとき */
+.faq{display:flex;flex-direction:column;gap:10px}
+.faq details{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 18px}
+.faq summary{cursor:pointer;font-family:var(--round);font-weight:700;font-size:18px;color:var(--deep)}
+.faq summary:focus-visible{outline:3px solid var(--goldfill);outline-offset:4px;border-radius:6px}
+.faq details p{margin-top:8px}
+.end{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;background:var(--soft);border-radius:28px;padding:24px}
+.end img{width:100%;height:auto}
+@media (max-width:520px){.end{grid-template-columns:1fr}.end img{width:130px;justify-self:center}}
+@media (prefers-reduced-motion:no-preference){.hero img{animation:bob 3.6s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-6px)}}}
+</style>
+
+<div class="wrap" lang="ja">
+
+<header class="hero">
+  <div>
+    <span class="tag">Macに替えたばかりの方へ</span>
+    <h1>Macは、<br>買った日から<br>ウイルス対策が<br>動いています</h1>
+    <p class="say">別のソフトを買わなくて大丈夫です。<br>そのかわり、このページの「3つの設定」だけ確かめてください。<br>10分あれば終わります。</p>
+  </div>
+  <img src="img/mascot_invite.webp" alt="そろばんを持ったティールのロボが両手を広げて案内している絵">
+</header>
+
+<section class="sec">
+  <h2>なぜWindowsでは必要だったの？</h2>
+  <div class="vs">
+    <div class="c">
+      <b>Windowsのころ</b>
+      <p>使っている人が多く、ずっと狙われやすい立場でした。<br>昔は標準の守りも弱く、ノートンやウイルスバスターを入れるのが当たり前でした。</p>
+    </div>
+    <div class="c mac">
+      <b>Macでは</b>
+      <p>ウイルス対策が最初から入っていて、裏で自動で動いています。<br>画面に何も出てこないので「守られていない」ように見えるだけです。</p>
+    </div>
+  </div>
+  <p class="small">いまはWindowsにも標準の「Microsoft Defender」があり、Windowsでも別売りのソフトがなくて困ることは少なくなっています。</p>
+</section>
+
+<section class="sec">
+  <h2>Macに最初から入っている守り</h2>
+  <ul class="guard">
+    <li><span class="dot">✓</span><b>XProtect（エックスプロテクト）</b><span>Mac標準のウイルス対策です。<br>知られているウイルスを見つけて、自動で止めます。</span></li>
+    <li><span class="dot">✓</span><b>Gatekeeper（ゲートキーパー）</b><span>出どころの分からないアプリを、開く前に止めます。</span></li>
+    <li><span class="dot">✓</span><b>FileVault（ファイルボールト）</b><span>中身を暗号化します。<br>Macをなくしても、他の人は中を読めません。</span></li>
+    <li><span class="dot">✓</span><b>セキュリティの自動更新</b><span>新しく見つかった穴を、自動でふさぎます。</span></li>
+  </ul>
+  <div class="callout">
+    <img src="img/mascot_think.webp" alt="ロボが首をかしげて考えている絵">
+    <p>どれも、設定がオンのままなら自動で働きます。<br>なので大事なのは「ソフトを足すこと」より「オンになっているか確かめること」です。</p>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>やってほしい設定は3つだけ</h2>
+  <p class="lead">設定の画面は、画面の左上にあるりんごのマーク（）を押して「システム設定…」を選ぶと開きます。<br>左上の「検索」に言葉を入れて探すこともできます。</p>
+
+  <article class="step">
+    <h2><span class="no">1</span>アップデートを自動にする</h2>
+    <p class="why"><b>なぜ：</b>ウイルス対策の中身も、このアップデートで新しくなります。<br>止めていると守りが古いままになります。</p>
+    <ol class="do">
+      <li><span>「システム設定」を開く</span></li>
+      <li><span>左の列で「一般」を押す</span></li>
+      <li><span>右側の「ソフトウェアアップデート」を押す</span></li>
+      <li><span>「自動アップデート」が<b>オン</b>になっているか見る（オフなら右の ⓘ を押して、全部オンにする）</span></li>
+      <li><span>上に「今すぐアップデート」が出ていたら、仕事の区切りで押す（再起動するので、保存してから）</span></li>
+    </ol>
+    <figure>
+      <img src="img/s1_update.jpg" alt="ソフトウェアアップデートの画面。自動アップデートの行に赤い枠がついている" loading="lazy">
+      <figcaption><span class="mark">赤い枠</span>の「自動アップデート」が「オン」ならOKです。</figcaption>
+    </figure>
+  </article>
+
+  <article class="step">
+    <h2><span class="no">2</span>ファイアウォールをオンにする</h2>
+    <p class="why"><b>なぜ：</b>カフェやホテルのWi-Fiで、外から勝手に入ってくる接続を止めます。<br>Macは最初「停止」になっていることが多い設定です。</p>
+    <ol class="do">
+      <li><span>「システム設定」を開く</span></li>
+      <li><span>左の列で「ネットワーク」を押す</span></li>
+      <li><span>右側の「ファイアウォール」を押す</span></li>
+      <li><span>次の画面のいちばん上にあるスイッチを押して<b>オン</b>にする</span></li>
+      <li><span>パスワードか指紋（Touch ID）を聞かれたら、Macにログインするときのものを入れる</span></li>
+    </ol>
+    <figure>
+      <img src="img/s2_firewall.jpg" alt="ネットワークの画面。ファイアウォールの行に赤い枠があり、停止と表示されている" loading="lazy">
+      <figcaption>この写真は「停止」になっている状態です。<br>「ファイアウォール」の行を押すと、次の画面に進みます。</figcaption>
+    </figure>
+    <figure>
+      <img src="img/s2b_switch.jpg" alt="ファイアウォールの画面。右上のスイッチに赤い枠があり、いまはオフになっている" loading="lazy">
+      <figcaption><span class="mark">赤い枠</span>のスイッチを押して、青いオンにします。<br>下の「オプション…」は触らなくて大丈夫です。</figcaption>
+    </figure>
+    <p class="done">オンにしても、ネット・Zoom・LINE・メール・AirDrop・iPhoneとの同期は、今までどおり使えます。</p>
+    <p class="small">オンにした直後だけ、アプリによって「〇〇への着信ネットワーク接続を受け入れますか？」と聞かれることがあります。<br>自分で入れたアプリなら「許可」、心当たりがなければ「拒否」で大丈夫です。<br>一度答えれば、同じアプリでは聞かれません。<br>「オプション…」の中の「外部からの接続をすべてブロック」はオンにしないでください。<br>AirDropや画面共有まで止まって不便になります。</p>
+  </article>
+
+  <article class="step">
+    <h2><span class="no">3</span>アプリの入手先と暗号化を見る</h2>
+    <p class="why"><b>なぜ：</b>知らない所のアプリを開けないようにして、Macをなくしたときも中身を守ります。<br>お客さまの資料を扱うので、ここは必ず見ておいてください。</p>
+    <ol class="do">
+      <li><span>「システム設定」を開く</span></li>
+      <li><span>左の列で「プライバシーとセキュリティ」を押す</span></li>
+      <li><span>右側をいちばん下の方までスクロールして「セキュリティ」の欄を出す</span></li>
+      <li><span>「アプリケーションの実行許可」が<b>「App Storeと既知のデベロッパ」</b>になっているか見る</span></li>
+      <li><span>「FileVault」が<b>オン</b>になっているか見る（オフなら押して、画面の案内どおりにオンにする）</span></li>
+    </ol>
+    <figure>
+      <img src="img/s3_security.jpg" alt="プライバシーとセキュリティの画面。アプリケーションの実行許可とFileVaultの行に赤い枠がある" loading="lazy">
+      <figcaption><span class="mark">赤い枠</span>の2つが、写真と同じならOKです。</figcaption>
+    </figure>
+    <p class="small">FileVaultをオンにするときに出る「復旧キー」は、Macのパスワードを忘れたときの合鍵です。<br>「iCloudアカウントで解除できるようにする」を選んでおけば、自分で控える必要はありません。</p>
+  </article>
+</section>
+
+<section class="sec">
+  <h2>Macで本当に気をつけること</h2>
+  <p class="lead">いまのMacの被害は、ウイルスより「だまされて自分で入れてしまう」ものがほとんどです。<br>ここは設定では防げないので、覚えておいてください。</p>
+  <div class="trap">
+    <div class="t">
+      <b>「ウイルスに感染しています」の画面</b>
+      <p>ネットを見ているときに急に出る警告は、ほぼ全部が偽物です。<br>Macの本物の警告は、ブラウザの中には出ません。</p>
+      <p class="then">書かれた番号に電話しない・何も入れない。<br>ブラウザを <span class="key">command</span>＋<span class="key">Q</span> で閉じればおしまいです。</p>
+    </div>
+    <div class="t">
+      <b>「Macのお掃除」「無料ウイルス対策」のアプリ</b>
+      <p>Windowsの感覚で検索して入れてしまう人が多いアプリです。<br>中には、それ自体が困ったアプリのものもあります。</p>
+      <p class="then">アプリはApp Storeか、使う会社の公式サイトからだけ入れる。</p>
+    </div>
+    <div class="t">
+      <b>本物そっくりのログイン画面</b>
+      <p>Google・LINE・銀行・Metaなどのふりをしたメールやメッセージから、偽の画面に飛ばされます。</p>
+      <p class="then">メールのリンクからはログインしない。<br>いつものブックマークやアプリから開き直す。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>困ったとき</h2>
+  <div class="faq">
+    <details><summary>設定の場所が写真と違う</summary><p>Macのバージョンで場所が少し変わります。<br>「システム設定」の左上の「検索」に「ファイアウォール」「FileVault」と入れると、その画面に飛べます。</p></details>
+    <details><summary>パスワードを聞かれて先に進めない</summary><p>Macを起動したときに入れるパスワードです。<br>分からないときは、無理に進めずそのままにしておいてください。</p></details>
+    <details><summary>怪しい画面を押してしまった</summary><p>まずブラウザを閉じてください。<br>何かを入れてしまった、電話をかけてしまったときは、ひとりで何とかしようとせず、すぐ森川にLINEで連絡してください。</p></details>
+    <details><summary>やっぱり別のウイルス対策ソフトを入れたい</summary><p>会社や取引先から「入れること」と言われた場合だけで大丈夫です。<br>入れるときは、自分で選ばず先に相談してください。</p></details>
+  </div>
+</section>
+
+<footer class="end">
+  <img src="img/mascot_base.webp" alt="ロボが片手を上げてあいさつしている絵">
+  <div>
+    <h3>まとめると</h3>
+    <p>ソフトは買わなくて大丈夫です。<br>①アップデートは自動、②ファイアウォールはオン、③入手先とFileVaultを確認。<br>あとは、急に出る警告とメールのリンクに気をつければ十分です。</p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+/* 行末に1〜2文字だけ残らないよう、各行の終わりの5文字をつなげる */
+document.querySelectorAll('p,li>span,figcaption,summary,.vs b,.guard b').forEach(function(el){
+  var nodes=[];el.childNodes.forEach(function(n,i){
+    var next=n.nextSibling;
+    if(n.nodeType===3&&n.textContent.trim().length>6&&(!next||next.nodeName==='BR'))nodes.push(n);
+  });
+  nodes.forEach(function(n){
+    var t=n.textContent.replace(/\s+$/,''),cut=t.length-5;
+    var s=document.createElement('span');s.style.whiteSpace='nowrap';s.textContent=t.slice(cut);
+    n.textContent=t.slice(0,cut);n.after(s);
+  });
+});
+</script>
+</html>
